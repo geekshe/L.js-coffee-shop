@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway" >
     <!-- Our CSS -->
     <link rel="stylesheet" href="static/coffee.css">
+
 </head>
 <body>
 <div class="container">
@@ -17,7 +18,7 @@
         <h1>Coffee Shop</h1>
         <br>
 
-        <img id="coffee-image" src="LOLWUT" alt="make this image work with js" height="300" width="200">
+        <img id="coffee-image" alt="make this image work with js" height="300" width="200">
 
         <h3 id="message">Click The Image To Order Coffee</h3>
 
@@ -45,11 +46,16 @@
 </div>
 
 <script>
-
     // Set these variables to their DOM elements
+    "use strict";
 
     var myImage;
     var myRevenueMessage;
+    var drinksOrdered = [];
+    var espresso;
+    var latte;
+    var hotChocolate;
+
 
     // use this JavaScript object in further study step
 
@@ -59,6 +65,37 @@
         "latte": 4.15,
         "hot chocolate": 2.50
     };
+
+    myImage = document.getElementById('coffee-image');
+    espresso = document.getElementById('espresso');
+    latte = document.getElementById('latte');
+    hotChocolate = document.getElementById('hot-chocolate');
+
+
+    // console.log("i'm working");
+
+    myImage.setAttribute('src', 'static/coffee_beans.jpg');   
+
+    myRevenueMessage = document.getElementById('revenue');
+
+    function makeCoffee(drinkType) {
+        
+        drinksOrdered.push(drinkType);
+        console.log(drinksOrdered);
+
+        myImage.setAttribute('src', 'static/coffee_machine.jpg'); 
+        setTimeout(function () {
+            myImage.setAttribute('src', 'static/coffee_mug.jpg');
+            }, 1500);
+        setTimeout(function () {
+            myImage.setAttribute('src', 'static/coffee_beans.jpg');
+            }, 4000);
+        }
+
+
+    espresso.addEventListener('click', function () { return makeCoffee('espresso'); });
+    latte.addEventListener('click', function () { return makeCoffee('latte'); });
+    hotChocolate.addEventListener('click', function () { return makeCoffee('hotChocolate'); });
 
 
 </script>
